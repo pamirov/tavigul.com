@@ -3,5 +3,6 @@ provider "aws" {
 }
 
 module "vpc" {
-  source =  
+  source = "github.com/pamirov/tavigul.com//eks-cluster/modules?ref=eks-cluster"
 }
+
