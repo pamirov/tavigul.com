@@ -5,5 +5,7 @@ variable "cidr_vpc" {
 }
 
 variable "vpc_tags" {
-  
+    default = {
+        Name = "cluster_vpc"
+    }
 }
