@@ -1,6 +1,6 @@
 #Child module outputs 
 
 output "vpc_id" {
-  value = aws_vpc.cluster_vpc.id
+  value = aws_vpc.eks_vpc.id
 }
 
