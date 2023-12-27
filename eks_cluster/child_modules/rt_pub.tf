@@ -1,4 +1,4 @@
-resource "aws_route_table" "rt" {
+resource "aws_route_table" "rt_pub" {
     vpc_id = aws_vpc.eks_vpc.id
 
     route {
@@ -7,7 +7,7 @@ resource "aws_route_table" "rt" {
     }
 
     tags = {
-        Name = "eks_rt"
+        Name = "eks_rt_pub"
     }
   
 }

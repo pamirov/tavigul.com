@@ -13,6 +13,23 @@ output "pub_subnet_id" {
 }
 
 output "igw" {
-  value = aws_internet_gateway.igw.id
+  value = aws_internet_gateway.igw[*].id
 }
+
+output "ngw" {
+  value = aws_nat_gateway.nat_gw[*].id
+}
+
+output "route_table_id" {
+  value = aws_route_table.rt_pub.id
+}
+
+output "nat_rt_id" {
+  value = aws_route_table.rt_pr[*].id
+}
+
+output "nat_eip" {
+  value = aws_eip.nat_eip.id
+}
+
 
