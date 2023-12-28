@@ -7,5 +7,5 @@ resource "aws_route_table_association" "eks_rt_as" {
 resource "aws_route_table_association" "eks_rt_nat" {
   count          = length(var.pr_cidr)
   subnet_id      = aws_subnet.eks_pr_subnets[count.index].id
-  route_table_id = aws_route_table.rt_pr[0].id
+  route_table_id = aws_route_table.rt_pr[count.index].id
 }

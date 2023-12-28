@@ -1,5 +1,5 @@
 resource "aws_route_table" "rt_pr" {
-    count = 1
+    count = length(var.azs)
     vpc_id = aws_vpc.eks_vpc.id
 
     route {

@@ -29,7 +29,7 @@ output "nat_rt_id" {
 }
 
 output "nat_eip" {
-  value = aws_eip.nat_eip.id
+  value = aws_eip.nat_eip[*].id
 }
 
 
