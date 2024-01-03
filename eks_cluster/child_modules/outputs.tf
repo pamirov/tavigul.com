@@ -32,4 +32,6 @@ output "nat_eip" {
   value = aws_eip.nat_eip[*].id
 }
 
-
+output "sg_id" {
+  value = aws_security_group.eks_sg.id
+}
