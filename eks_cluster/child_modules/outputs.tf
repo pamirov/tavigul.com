@@ -35,3 +35,11 @@ output "nat_eip" {
 output "sg_id" {
   value = aws_security_group.eks_sg.id
 }
+
+output "eks_role_arn" {
+  value = aws_iam_role.EKSClusterRole.arn
+}
+
+output "node_group_role" {
+  value = aws_iam_role.NodeGroupRole.arn
+}
