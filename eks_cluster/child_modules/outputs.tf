@@ -43,3 +43,7 @@ output "eks_role_arn" {
 output "node_group_role" {
   value = aws_iam_role.NodeGroupRole.arn
 }
+
+output "oidc_arn" {
+  value = aws_iam_openid_connect_provider.eks_oidc.arn
+}
