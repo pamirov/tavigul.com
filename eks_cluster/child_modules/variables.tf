@@ -29,4 +29,3 @@ variable "pub_cidr_tag" {
   type = list(string)
   default = [ "public-sub-1", "public-sub-2", "public-sub-3" ]
 }
-
