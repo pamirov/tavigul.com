@@ -47,3 +47,7 @@ output "node_group_role" {
 output "oidc_arn" {
   value = aws_iam_openid_connect_provider.eks_oidc.arn
 }
+
+output "ca_iam_role_arn" {
+  value = aws_iam_role.ca_iam_role.arn
+}

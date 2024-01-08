@@ -9,6 +9,11 @@ resource "aws_eks_cluster" "eks_cluster" {
       security_group_ids = [aws_security_group.eks_sg.id]
     }
 
+    tags = {
+    "k8s.io/cluster-autoscaler/enabled"      = "true"
+    "k8s.io/cluster-autoscaler/eks_cluster" = "owned"
+  }
+
     depends_on = [ aws_iam_role_policy_attachment.AmazonEKSClusterPolicy ]
   
 }
