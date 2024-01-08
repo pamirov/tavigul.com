@@ -35,3 +35,29 @@ variable "aws_account_id" {
 
 variable "oidc" {
 }
+
+# variable "addons" {
+#   type = list(object({
+#     name    = string
+#     version = string
+#   }))
+
+#   default = [
+#     {
+#       name    = "kube-proxy"
+#       version = "v1.28.4-eksbuild.1"
+#     },
+#     {
+#       name    = "vpc-cni"
+#       version = "v1.16.0-eksbuild.1"
+#     },
+#     {
+#       name    = "coredns"
+#       version = "v1.10.1-eksbuild.6"
+#     },
+#     {
+#       name    = "aws-ebs-csi-driver"
+#       version = "v1.26.0-eksbuild.1"
+#     }
+#   ]
+# }
