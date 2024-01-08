@@ -27,18 +27,22 @@ resource "aws_iam_policy" "ca_iam_policy" {
 resource "aws_iam_role" "ca_iam_role" {
     name = "ca_iam_role"
     assume_role_policy = jsonencode({
-        Version = "2012-10-17"
-        Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
+    Version = "2012-10-17",
+    Statement = [
+    {
+      Effect = "Allow",
+      Action = "sts:AssumeRoleWithWebIdentity",
+      Principal = {
+        Federated = "arn:aws:iam::${var.aws_account_id}:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/${var.oidc}"
       },
-    ]
-  })
+      Condition = {
+        StringEquals = {
+          "oidc.eks.us-east-1.amazonaws.com/id/${var.oidc}:aud" = ["sts.amazonaws.com"]
+        }
+      }
+    }
+  ]
+})
 }
 
 resource "aws_iam_role_policy_attachment" "ca_iam_attachment" {
