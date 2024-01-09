@@ -5,7 +5,7 @@ metadata:
     k8s-addon: cluster-autoscaler.addons.k8s.io
     k8s-app: cluster-autoscaler
   annotations:
-    eks.amazonaws.com/role-arn: ${CAROLEARN}
+    eks.amazonaws.com/role-arn: arn:aws:iam::225998334450:role/ca_iam_role
   name: cluster-autoscaler
   namespace: kube-system
 
@@ -117,3 +117,54 @@ subjects:
   - kind: ServiceAccount
     name: cluster-autoscaler
     namespace: kube-system
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-autoscaler
+  namespace: kube-system
+  labels:
+    app: cluster-autoscaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cluster-autoscaler
+  template:
+    metadata:
+      labels:
+        app: cluster-autoscaler
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'
+    spec:                             
+      serviceAccountName: cluster-autoscaler
+      containers:
+        - image: public.ecr.aws/n0a0a3c3/eks-images/cluster-autoscaler:v1.23.1
+          name: cluster-autoscaler
+          resources:
+            limits:
+              cpu: 50m
+              memory: 200Mi
+            requests:
+              cpu: 50m
+              memory: 200Mi
+          command:
+            - ./cluster-autoscaler
+            - --v=4
+            - --stderrthreshold=info
+            - --cloud-provider=aws
+            - --skip-nodes-with-local-storage=false
+            - --expander=least-waste
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/eks_cluster
+            - --balance-similar-node-groups
+            - --skip-nodes-with-system-pods=false
+          volumeMounts:
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs/ca-certificates.crt #/etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
+              readOnly: true
+          imagePullPolicy: "Always"
+      volumes:
+        - name: ssl-certs
+          hostPath:
+            path: "/etc/ssl/certs/ca-bundle.crt"

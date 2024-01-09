@@ -58,32 +58,32 @@ resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
 
 #Additional policies
 
-resource "aws_iam_role_policy_attachment" "cluster-amazon-eks-service-policy" {
-    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-    role       = aws_iam_role.EKSClusterRole.name
-}
+# resource "aws_iam_role_policy_attachment" "cluster-amazon-eks-service-policy" {
+#     policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+#     role       = aws_iam_role.EKSClusterRole.name
+# }
 
-resource "aws_iam_role_policy_attachment" "cluster-amazon-vpc-full-access" {
-    policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
-    role       = aws_iam_role.EKSClusterRole.name
-}
+# resource "aws_iam_role_policy_attachment" "cluster-amazon-vpc-full-access" {
+#     policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+#     role       = aws_iam_role.EKSClusterRole.name
+# }
 
-resource "aws_iam_role_policy_attachment" "cluster-amazon-ec2full-access" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-  role       = aws_iam_role.EKSClusterRole.name
-}
+# resource "aws_iam_role_policy_attachment" "cluster-amazon-ec2full-access" {
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+#   role       = aws_iam_role.EKSClusterRole.name
+# }
 
-resource "aws_iam_role_policy_attachment" "cluster-amazon-ebscsi-driver-policy" {
-    policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-    role       = aws_iam_role.EKSClusterRole.name
-}
+# resource "aws_iam_role_policy_attachment" "cluster-amazon-ebscsi-driver-policy" {
+#     policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+#     role       = aws_iam_role.EKSClusterRole.name
+# }
 
-resource "aws_iam_role_policy_attachment" "cluster-amazon-route53-full-access" {
-    policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-    role       = aws_iam_role.EKSClusterRole.name
-}
+# resource "aws_iam_role_policy_attachment" "cluster-amazon-route53-full-access" {
+#     policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
+#     role       = aws_iam_role.EKSClusterRole.name
+# }
 
-resource "aws_iam_role_policy_attachment" "node-amazon-ebs-csi-driver-policy" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-  role       = aws_iam_role.NodeGroupRole.name
-}
+# resource "aws_iam_role_policy_attachment" "node-amazon-ebs-csi-driver-policy" {
+#   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+#   role       = aws_iam_role.NodeGroupRole.name
+# }

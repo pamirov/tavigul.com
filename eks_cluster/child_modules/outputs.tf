@@ -51,3 +51,11 @@ output "oidc_arn" {
 output "ca_iam_role_arn" {
   value = aws_iam_role.ca_iam_role.arn
 }
+
+output "ca_iam_policy_arn" {
+  value = aws_iam_policy.ca_iam_policy.arn
+}
+
+output "capolicy" {
+  value = aws_iam_policy.ca_iam_policy.arn
+}

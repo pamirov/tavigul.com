@@ -6,15 +6,20 @@ resource "aws_eks_node_group" "eks_nodes" {
     subnet_ids = [aws_subnet.eks_pr_subnets[count.index].id]
 
     scaling_config {
-      desired_size = 2
-      max_size = 3
+      desired_size = 3
+      max_size = 5
       min_size = 1
     }
 
     ami_type = "AL2_x86_64"
     instance_types = ["t3.micro"]
     capacity_type = "ON_DEMAND"
-    disk_size = 30
+    disk_size = 50
+
+        tags = {
+    "k8s.io/cluster-autoscaler/enabled"      = "true"
+    "k8s.io/cluster-autoscaler/eks_cluster" = "owned"
+  }
 
     depends_on = [ 
         aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy,
